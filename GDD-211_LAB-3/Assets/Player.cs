@@ -11,6 +11,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float speed = 2.0f;
 
     public GameObject restart;
+    public GameObject exit;
+    public GameObject exitText;
+
+    private int score;
 
     private void Awake()
     {
@@ -23,6 +27,13 @@ public class Player : MonoBehaviour
         anim.SetFloat("Horizontal", moveH);
         anim.SetFloat("Vertical", moveV);
         anim.SetFloat("Speed", speed);
+
+        if (score == 4)
+        {
+            exitText.SetActive(true);
+            exit.SetActive(true);
+        }
+
     }
 
     private void FixedUpdate()
@@ -39,6 +50,12 @@ public class Player : MonoBehaviour
             restart.SetActive(true);
             Destroy(gameObject);
 
+        }
+
+        if (collision.tag == "Gem")
+        {
+            Destroy(collision.gameObject);
+            score++;
         }
     }
 }
