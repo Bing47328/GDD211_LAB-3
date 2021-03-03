@@ -4,15 +4,47 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private string enemyName;
+    [SerializeField] private float moveSpeed;
+    private float hp;
+    [SerializeField] private float maxhp;
+    private Transform target;
+
+    [SerializeField] private float radius;
+    private SpriteRenderer sp;
+
+
+    private void Start()
     {
-        
+        hp = maxhp;
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        sp = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        Move();
+        Turn();
     }
+
+    private void Move()
+    {
+        if (Vector2.Distance(transform.position, target.position) < radius)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+        }
+    }
+
+    private void Turn()
+    {
+        if (transform.position.x > target.position.x)
+        {
+            sp.flipX = true;
+        }
+        else
+        {
+            sp.flipX = false;
+        }
+    }
+
 }
