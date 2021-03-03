@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
+    public Animator anim;
+
     private float moveH, moveV;
     [SerializeField] private float speed = 2.0f;
 
@@ -13,6 +15,14 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+    }
+
+    private void Update()
+    {
+        anim.SetFloat("Horizontal", moveH);
+        anim.SetFloat("Vertical", moveV);
+        anim.SetFloat("Speed", speed);
     }
 
     private void FixedUpdate()
