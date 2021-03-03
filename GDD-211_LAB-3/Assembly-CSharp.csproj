@@ -60,6 +60,8 @@
     <Compile Include="Assets\Player.cs" />
     <Compile Include="Assets\Coin.cs" />
     <Compile Include="Assets\Devil.cs" />
+    <Compile Include="Assets\Exit.cs" />
+    <Compile Include="Assets\Manager.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\DevilsGarage_Arcade_Maze_2D_v02\license.txt" />

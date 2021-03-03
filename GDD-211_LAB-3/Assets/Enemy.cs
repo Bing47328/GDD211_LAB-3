@@ -6,17 +6,14 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private string enemyName;
     [SerializeField] private float moveSpeed;
-    private float hp;
-    [SerializeField] private float maxhp;
     private Transform target;
 
-    [SerializeField] private float radius;
+    [SerializeField] protected private float radius;
     private SpriteRenderer sp;
 
 
     private void Start()
     {
-        hp = maxhp;
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         sp = GetComponent<SpriteRenderer>();
     }
@@ -27,7 +24,7 @@ public class Enemy : MonoBehaviour
         Turn();
     }
 
-    private void Move()
+    protected virtual void Move()
     {
         if (Vector2.Distance(transform.position, target.position) < radius)
         {
